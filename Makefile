@@ -4,15 +4,15 @@ TARGET = RayLibTest
 
 SRC = RayLibTest.c
 
-CFLAGS = -Wall -std=c99 -I.
+CFLAGS = -Wall -std=c99 -Iraylib/include
 
 # OSごとのリンクオプションを設定
 ifeq ($(OS),Windows_NT)
-    LDFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
+    LDFLAGS = -Lraylib/lib -lraylib -lopengl32 -lgdi32 -lwinmm
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+        LDFLAGS = -Lraylib/lib -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
     endif
 endif
 
